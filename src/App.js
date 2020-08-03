@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import NotFound from './pages/not-found/not-found.page.jsx';
 import PartyList from './pages/party-list/party-list.page.jsx';
+import MemberList from './pages/member-list/member-list.page.jsx';
 
 import { Context as MainContext } from './context/MainContext';
 
@@ -13,13 +14,16 @@ function App() {
 
   /* eslint-disable react-hooks/exhaustive-deps*/
   React.useEffect(() => {
-    mainContext.preloadParties();
+    mainContext.preloadData();
   }, []);
   /* eslint-enable react-hooks/exhaustive-deps*/
 
   return (
     <Router>
       <Switch>
+        <Route path="/memberlist/:partyName" name="Member List" exact>
+          <MemberList />
+        </Route>
         <Route path="/" name="Party List" exact>
           <PartyList />
         </Route>

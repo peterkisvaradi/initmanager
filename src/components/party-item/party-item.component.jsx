@@ -1,6 +1,8 @@
 import React from 'react';
 import './party-item.styles.css';
 
+import { Link } from 'react-router-dom';
+
 import { Context as MainContext } from '../../context/MainContext';
 
 const PartyItem = ({ name }) => {
@@ -8,7 +10,7 @@ const PartyItem = ({ name }) => {
 
   return (
     <div>
-      {name}
+      <Link to={`/memberList/${name}`}>{name}</Link>
       <button onClick={() => mainContext.deleteParty(name)}>DEL</button>
     </div>
   );

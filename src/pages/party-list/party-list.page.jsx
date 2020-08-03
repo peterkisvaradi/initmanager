@@ -31,7 +31,9 @@ const PartyList = () => {
       <h2 className="title">{lang.TITLE_PARTY_LIST_PAGE}</h2>
       <div className="contentwrap">
         {parties &&
-          parties.map((item, index) => <PartyItem name={item} key={index} />)}
+          parties.map((item, index) => (
+            <PartyItem name={item} key={`pi${index}`} />
+          ))}
       </div>
       <div className="footer">
         <h3>Create new party:</h3>
