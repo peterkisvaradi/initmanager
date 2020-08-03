@@ -4,9 +4,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { Provider as MainProvider } from './context/MainContext';
+import lang from './data/lang-hu.json';
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MainProvider injectState={{ lang }}>
+      <App />
+    </MainProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
