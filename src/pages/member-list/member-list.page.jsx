@@ -9,13 +9,16 @@ import CreateItem from '../../components/create-item/create-item-component.jsx';
 
 const MemberList = () => {
   const { partyName } = useParams();
-  const [state, setState] = React.useState({ memberName: '' });
+  const [state, setState] = React.useState({ memberName: '', error: false });
   const mainContext = React.useContext(MainContext);
   const { members } = mainContext.state;
+  const currentMembers = members.filter((item) => item.partyName === partyName);
+  const memberNames = currentMembers.map((item) => item.name);
 
   const handleChange = (event) => {
     setState({
       memberName: event.target.value,
+      error: memberNames.includes(event.target.value),
     });
   };
 

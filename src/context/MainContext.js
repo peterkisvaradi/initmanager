@@ -8,6 +8,7 @@ import {
   DELETE_MEMBER,
   UPDATE_MEMBER,
   MEMBERS_KEY,
+  DELETE_MEMBERS_BY_PARTY,
 } from './constants';
 
 const localStorage = window.localStorage;
@@ -36,8 +37,8 @@ const mainReducer = (state, action) => {
     case ADD_PARTY:
       newState = {
         ...state,
-        parties: [...state.parties, action.payload.parties],
-        members: [...state.members, action.payload.members],
+        parties: [...state.parties, action.payload],
+        // members: [...state.members, action.payload.members],
       };
       saveToStorage(PARTIES_KEY, JSON.stringify(newState.parties));
       return newState;
@@ -53,7 +54,26 @@ const mainReducer = (state, action) => {
       saveToStorage(MEMBERS_KEY, JSON.stringify(newState.members));
       return newState;
     case DELETE_MEMBER:
-      return state;
+      newState = {
+        ...state,
+        members: state.members.filter((item) => {
+          return !(
+            item.name === action.payload.name &&
+            item.partyName === action.payload.partyName
+          );
+        }),
+      };
+      saveToStorage(MEMBERS_KEY, JSON.stringify(newState.members));
+      return newState;
+    case DELETE_MEMBERS_BY_PARTY:
+      newState = {
+        ...state,
+        members: state.members.filter(
+          (item) => item.partyName !== action.payload
+        ),
+      };
+      saveToStorage(MEMBERS_KEY, JSON.stringify(newState.members));
+      return newState;
     case UPDATE_MEMBER:
       return state;
     default:
@@ -61,9 +81,9 @@ const mainReducer = (state, action) => {
   }
 };
 
-const addParty = (dispatch) => (party) => {
+const addParty = (dispatch) => (partyName) => {
   console.log('ADD PARTY ACTION Reducer');
-  dispatch({ type: ADD_PARTY, payload: party });
+  dispatch({ type: ADD_PARTY, payload: partyName });
 };
 
 const preloadData = (dispatch) => () => {
@@ -78,6 +98,7 @@ const preloadData = (dispatch) => () => {
 
 const deleteParty = (dispatch) => (name) => {
   console.log('DELETE PARTY Reducer');
+  dispatch({ type: DELETE_MEMBERS_BY_PARTY, payload: name });
   dispatch({ type: DELETE_PARTY, payload: name });
 };
 
@@ -86,9 +107,14 @@ const addMember = (dispatch) => (partyMemberObject) => {
   dispatch({ type: ADD_MEMBER, payload: partyMemberObject });
 };
 
-const deleteMember = (dispatch) => (memberName, partyName) => {
+const deleteMember = (dispatch) => (member) => {
   console.log('DELETE PARTY MEMBER Reducer');
-  dispatch({ type: DELETE_MEMBER, payload: { memberName, partyName } });
+  dispatch({ type: DELETE_MEMBER, payload: member });
+};
+
+const deleteMembersByParty = (dispatch) => (partyName) => {
+  console.log('DELETE PARTY MEMBERS BY PARTY Reducer');
+  dispatch({ type: DELETE_MEMBERS_BY_PARTY, payload: partyName });
 };
 
 const updateMember = (dispatch) => (partyMemberObject) => {
@@ -105,6 +131,7 @@ export const { Provider, Context } = createDataContext(
     addMember,
     deleteMember,
     updateMember,
+    deleteMembersByParty,
   },
   { lang: {}, parties: [], members: [] }
 );
