@@ -24,7 +24,13 @@ const MemberList = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    mainContext.addMember({ name: state.memberName, partyName });
+    mainContext.addMember({
+      name: state.memberName,
+      partyName,
+      modifier: 0,
+      advantage: false,
+      disadvantage: false,
+    });
     setState({ memberName: '' });
   };
 
