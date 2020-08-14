@@ -28,11 +28,12 @@ const MemberItem = ({ member }) => {
 
   const handleNameChange = (event) => {
     const { value } = event.target;
+    console.log(value);
     setState((prevState) => {
       return {
         ...prevState,
         memberObject: { ...prevState.memberObject, name: value },
-        error: memberNames.includes(value),
+        error: memberNames.includes(value) || value === '',
       };
     });
   };
@@ -49,12 +50,28 @@ const MemberItem = ({ member }) => {
     });
   };
   const handleAdvantageChange = (event) => {
-    const { value } = event.target;
-    setState({ ...state, advantage: event.target.checked });
+    const { checked } = event.target;
+    setState((prevState) => {
+      return {
+        ...prevState,
+        memberObject: {
+          ...prevState.memberObject,
+          advantage: checked,
+        },
+      };
+    });
   };
   const handleDisadvantageChange = (event) => {
-    const { value } = event.target;
-    setState({ ...state, disadvantage: event.target.checked });
+    const { checked } = event.target;
+    setState((prevState) => {
+      return {
+        ...prevState,
+        memberObject: {
+          ...prevState.memberObject,
+          disadvantage: checked,
+        },
+      };
+    });
   };
 
   return (
@@ -85,6 +102,7 @@ const MemberItem = ({ member }) => {
         disabled={state.memberObject.advantage}
       />
       <button onClick={() => mainContext.deleteMember(member)}>DEL</button>
+      {state.error && <div>ERROR egyező vagy üres név</div>}
     </div>
   );
 };
