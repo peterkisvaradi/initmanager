@@ -15,15 +15,16 @@ const CreateItem = ({ partyName }) => {
   const memberNames = currentMembers.map((item) => item.name);
 
   const handleChange = (event) => {
+    const { value } = event.target;
     if (partyName) {
       setState({
-        newMemberName: event.target.value,
-        error: memberNames.includes(event.target.value),
+        newMemberName: value,
+        error: memberNames.includes(value),
       });
     } else {
       setState({
-        newPartyName: event.target.value,
-        error: parties.includes(event.target.value),
+        newPartyName: value,
+        error: parties.includes(value),
       });
     }
   };

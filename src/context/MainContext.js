@@ -75,6 +75,7 @@ const mainReducer = (state, action) => {
       saveToStorage(MEMBERS_KEY, JSON.stringify(newState.members));
       return newState;
     case UPDATE_MEMBER:
+      console.log(action.payload);
       return state;
     default:
       return state;

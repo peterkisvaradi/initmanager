@@ -8,49 +8,81 @@ const MemberItem = ({ member }) => {
   const { name, modifier, advantage, disadvantage } = member;
   const [state, setState] = React.useState({
     error: false,
-    advantage,
-    disadvantage,
-    modifier,
-    name,
+    memberObject: {
+      advantage,
+      disadvantage,
+      modifier,
+      name,
+    },
+  });
+  const currentMembers = mainContext.state.members.filter(
+    (item) => item.partyName === member.partyName
+  );
+  const memberNames = currentMembers.map((item) => item.name);
+
+  React.useEffect(() => {
+    if (!state.error) {
+      mainContext.updateMember(state.memberObject);
+    }
   });
 
   const handleNameChange = (event) => {
-    setState({ ...state, name: event.target.value });
+    const { value } = event.target;
+    setState((prevState) => {
+      return {
+        ...prevState,
+        memberObject: { ...prevState.memberObject, name: value },
+        error: memberNames.includes(value),
+      };
+    });
   };
   const handleModifierChange = (event) => {
-    setState({ ...state, modifier: event.target.value });
+    const { value } = event.target;
+    setState((prevState) => {
+      return {
+        ...prevState,
+        memberObject: {
+          ...prevState.memberObject,
+          modifier: value,
+        },
+      };
+    });
   };
   const handleAdvantageChange = (event) => {
+    const { value } = event.target;
     setState({ ...state, advantage: event.target.checked });
   };
   const handleDisadvantageChange = (event) => {
+    const { value } = event.target;
     setState({ ...state, disadvantage: event.target.checked });
   };
 
   return (
     <div>
-      Name:{' '}
+      Name:
       <input
         type="text"
-        value={state.name}
+        value={state.memberObject.name}
         onChange={handleNameChange}
-        required
       />
-      Modifier:{' '}
-      <input value={state.modifier} onChange={handleModifierChange} required />
+      Modifier:
+      <input
+        value={state.memberObject.modifier}
+        onChange={handleModifierChange}
+      />
       Advantage:
       <input
         type="checkbox"
-        checked={state.advantage}
+        checked={state.memberObject.advantage}
         onChange={handleAdvantageChange}
-        disabled={state.disadvantage}
+        disabled={state.memberObject.disadvantage}
       />
       Disadvantage:
       <input
         type="checkbox"
-        checked={state.disadvantage}
+        checked={state.memberObject.disadvantage}
         onChange={handleDisadvantageChange}
-        disabled={state.advantage}
+        disabled={state.memberObject.advantage}
       />
       <button onClick={() => mainContext.deleteMember(member)}>DEL</button>
     </div>
