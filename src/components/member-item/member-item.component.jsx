@@ -29,8 +29,15 @@ const MemberItem = ({ member }) => {
 
   return (
     <div>
-      Name: <input type="text" value={state.name} onChange={handleNameChange} />
-      Modifier: <input value={state.modifier} onChange={handleModifierChange} />
+      Name:{' '}
+      <input
+        type="text"
+        value={state.name}
+        onChange={handleNameChange}
+        required
+      />
+      Modifier:{' '}
+      <input value={state.modifier} onChange={handleModifierChange} required />
       Advantage:
       <input
         type="checkbox"

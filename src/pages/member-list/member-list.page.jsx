@@ -9,51 +9,35 @@ import CreateItem from '../../components/create-item/create-item-component.jsx';
 
 const MemberList = () => {
   const { partyName } = useParams();
-  const [state, setState] = React.useState({ memberName: '', error: false });
   const mainContext = React.useContext(MainContext);
   const { members } = mainContext.state;
   const currentMembers = members.filter((item) => item.partyName === partyName);
-  const memberNames = currentMembers.map((item) => item.name);
 
-  const handleChange = (event) => {
-    setState({
-      memberName: event.target.value,
-      error: memberNames.includes(event.target.value),
-    });
+  const handleSaveChange = (event) => {
+    console.log(event);
   };
 
-  const handleSubmit = (event) => {
+  const handleSaveSubmit = (event) => {
     event.preventDefault();
-    mainContext.addMember({
-      name: state.memberName,
-      partyName,
-      modifier: 0,
-      advantage: false,
-      disadvantage: false,
-    });
-    setState({ memberName: '' });
+    console.log('ASAVE');
   };
 
   return (
     <div className="wrap">
       <h2>Party members of {partyName}</h2>
-      <div className="itemlist">
-        {members
-          .filter((member) => member.partyName === partyName)
-          .map((item, index) => (
+      <form onSubmit={handleSaveSubmit}>
+        <div className="itemlist">
+          {currentMembers.map((item, index) => (
             <MemberItem key={`mi${index}`} member={item} />
           ))}
-      </div>
+        </div>
+        <div>
+          <button type="submit">Save</button>
+        </div>
+      </form>
       <div className="footer">
         <h3>Create new member:</h3>
-        <CreateItem
-          handleSubmit={handleSubmit}
-          handleChange={handleChange}
-          inputValue={state.memberName}
-          error={state.error}
-          label="Create Member"
-          buttonTitle="Create"
-        />
+        <CreateItem partyName={partyName} />
       </div>
     </div>
   );
