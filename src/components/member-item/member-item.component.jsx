@@ -5,14 +5,23 @@ import { Context as MainContext } from '../../context/MainContext';
 
 const MemberItem = ({ member }) => {
   const mainContext = React.useContext(MainContext);
-  const { name, modifier, advantage, disadvantage } = member;
+  const {
+    name,
+    modifier,
+    advantage,
+    disadvantage,
+    partyName,
+    created,
+  } = member;
   const [state, setState] = React.useState({
     error: false,
     memberObject: {
+      name,
+      partyName,
+      modifier,
       advantage,
       disadvantage,
-      modifier,
-      name,
+      created,
     },
   });
   const currentMembers = mainContext.state.members.filter(
@@ -20,11 +29,19 @@ const MemberItem = ({ member }) => {
   );
   const memberNames = currentMembers.map((item) => item.name);
 
+  const isInitialMount = React.useRef(true);
+
+  /* eslint-disable react-hooks/exhaustive-deps*/
   React.useEffect(() => {
-    if (!state.error) {
-      mainContext.updateMember(state.memberObject);
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      if (!state.error) {
+        mainContext.updateMember(state.memberObject);
+      }
     }
-  });
+  }, [state.memberObject]);
+  /* eslint-enable react-hooks/exhaustive-deps*/
 
   const handleNameChange = (event) => {
     const { value } = event.target;

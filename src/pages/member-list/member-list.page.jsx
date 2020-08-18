@@ -11,11 +11,17 @@ const MemberList = () => {
   const { partyName } = useParams();
   const mainContext = React.useContext(MainContext);
   const { members } = mainContext.state;
-  const currentMembers = members.filter((item) => item.partyName === partyName);
-
-  const handleSaveChange = (event) => {
-    console.log(event);
-  };
+  const currentMembers = members
+    .filter((item) => item.partyName === partyName)
+    .sort((a, b) => {
+      if (a.created < b.created) {
+        return -1;
+      }
+      if (a.created > b.created) {
+        return 1;
+      }
+      return 0;
+    });
 
   const handleSaveSubmit = (event) => {
     event.preventDefault();
@@ -30,9 +36,6 @@ const MemberList = () => {
           {currentMembers.map((item, index) => (
             <MemberItem key={`mi${index}`} member={item} />
           ))}
-        </div>
-        <div>
-          <button type="submit">Save</button>
         </div>
       </form>
       <div className="footer">

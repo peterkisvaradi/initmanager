@@ -75,8 +75,20 @@ const mainReducer = (state, action) => {
       saveToStorage(MEMBERS_KEY, JSON.stringify(newState.members));
       return newState;
     case UPDATE_MEMBER:
-      console.log(action.payload);
-      return state;
+      newState = {
+        ...state,
+        members: [
+          ...state.members.filter((item) => {
+            return !(
+              item.name === action.payload.name &&
+              item.partyName === action.payload.partyName
+            );
+          }),
+          action.payload,
+        ],
+      };
+      saveToStorage(MEMBERS_KEY, JSON.stringify(newState.members));
+      return newState;
     default:
       return state;
   }
