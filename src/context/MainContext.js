@@ -9,6 +9,7 @@ import {
   UPDATE_MEMBER,
   MEMBERS_KEY,
   DELETE_MEMBERS_BY_PARTY,
+  TOGGLE_IS_PLAYING,
 } from './constants';
 
 const localStorage = window.localStorage;
@@ -89,6 +90,9 @@ const mainReducer = (state, action) => {
       };
       saveToStorage(MEMBERS_KEY, JSON.stringify(newState.members));
       return newState;
+    case TOGGLE_IS_PLAYING:
+      newState = { ...state, isPlaying: !state.isPlaying };
+      return newState;
     default:
       return state;
   }
@@ -135,6 +139,11 @@ const updateMember = (dispatch) => (partyMemberObject) => {
   dispatch({ type: UPDATE_MEMBER, payload: partyMemberObject });
 };
 
+const toggleIsPlaying = (dispatch) => () => {
+  console.log('TOGGLE IS PLAYING Reducer');
+  dispatch({ type: TOGGLE_IS_PLAYING });
+};
+
 export const { Provider, Context } = createDataContext(
   mainReducer,
   {
@@ -145,6 +154,7 @@ export const { Provider, Context } = createDataContext(
     deleteMember,
     updateMember,
     deleteMembersByParty,
+    toggleIsPlaying,
   },
-  { lang: {}, parties: [], members: [] }
+  { lang: {}, parties: [], members: [], isPlaying: false }
 );

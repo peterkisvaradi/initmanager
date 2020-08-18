@@ -1,5 +1,5 @@
 import React from 'react';
-import './party-list.styles.css';
+import styles from './party-list.module.css';
 
 import { Context as MainContext } from '../../context/MainContext';
 
@@ -11,15 +11,15 @@ const PartyList = () => {
   const { lang, parties } = mainContext.state;
 
   return (
-    <div className="wrap">
-      <h2 className="title">{lang.TITLE_PARTY_LIST_PAGE}</h2>
-      <div className="contentwrap">
+    <div className={styles.wrap}>
+      <h2 className={styles.title}>{lang.TITLE_PARTY_LIST_PAGE}</h2>
+      <div className={styles.contentwrap}>
         {parties &&
           parties.map((item, index) => (
             <PartyItem name={item} key={`pi${index}`} />
           ))}
       </div>
-      <div className="footer">
+      <div className={styles.footer}>
         <h3>Create new party:</h3>
         <CreateItem />
       </div>

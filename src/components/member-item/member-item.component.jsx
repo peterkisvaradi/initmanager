@@ -1,5 +1,5 @@
 import React from 'react';
-import './member-item.styles.css';
+import styles from './member-item.module.css';
 
 import { Context as MainContext } from '../../context/MainContext';
 

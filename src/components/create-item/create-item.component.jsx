@@ -1,5 +1,5 @@
 import React from 'react';
-import './create-item.styles.css';
+import styles from './create-item.module.css';
 
 import { Context as MainContext } from '../../context/MainContext';
 

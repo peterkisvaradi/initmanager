@@ -9,3 +9,5 @@ export const DELETE_MEMBERS_BY_PARTY = 'DELETE_MEMBER_BY_PARTY';
 
 export const PARTIES_KEY = 'initManagerParties';
 export const MEMBERS_KEY = 'initManagerMembers';
+
+export const TOGGLE_IS_PLAYING = 'TOGGLE_IS_PLAYING';

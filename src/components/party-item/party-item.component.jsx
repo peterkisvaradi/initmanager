@@ -1,5 +1,5 @@
 import React from 'react';
-import './party-item.styles.css';
+import styles from './party-item.module.css';
 
 import { Link } from 'react-router-dom';
 
