@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { Context as MainContext } from '../../context/MainContext';
 
 import MemberItem from '../../components/member-item/member-item.component.jsx';
-import CreateItem from '../../components/create-item/create-item-component.jsx';
+import CreateItem from '../../components/create-item/create-item.component.jsx';
 
 const MemberList = () => {
   const { partyName } = useParams();

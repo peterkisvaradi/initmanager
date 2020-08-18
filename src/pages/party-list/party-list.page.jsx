@@ -4,7 +4,7 @@ import './party-list.styles.css';
 import { Context as MainContext } from '../../context/MainContext';
 
 import PartyItem from '../../components/party-item/party-item.component';
-import CreateItem from '../../components/create-item/create-item-component.jsx';
+import CreateItem from '../../components/create-item/create-item.component.jsx';
 
 const PartyList = () => {
   const mainContext = React.useContext(MainContext);
