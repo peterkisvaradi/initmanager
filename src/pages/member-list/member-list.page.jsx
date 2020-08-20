@@ -31,12 +31,17 @@ const MemberList = () => {
 
   return (
     <>
-      {isPlaying && <PlayModal />}
+      {isPlaying && <PlayModal partyName={partyName} />}
       {!isPlaying && (
         <div className={styles.wrap}>
           <Link to="/">HOME</Link>
           <h2>Party members of {partyName}</h2>
-          <button onClick={() => mainContext.toggleIsPlaying()}>PLAY</button>
+          <button
+            onClick={() => mainContext.toggleIsPlaying()}
+            disabled={currentMembers.length === 0}
+          >
+            PLAY
+          </button>
           <form onSubmit={handleSaveSubmit}>
             <div className={styles.itemlist}>
               {currentMembers.map((item, index) => (

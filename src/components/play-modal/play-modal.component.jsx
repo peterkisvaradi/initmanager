@@ -2,13 +2,14 @@ import React from 'react';
 import styles from './play-modal.module.css';
 import { Context as MainContext } from '../../context/MainContext';
 
-const PlayModal = () => {
+const PlayModal = ({ partyName }) => {
   const mainContext = React.useContext(MainContext);
   const { members } = mainContext.state;
-  const [order, setOrder] = React.useState([...members]);
+  const currentMembers = members.filter((item) => item.partyName === partyName);
+  const [order, setOrder] = React.useState([...currentMembers]);
 
   const play = () => {
-    const newOrder = members.map((item) => {
+    const newOrder = currentMembers.map((item) => {
       let roll = Math.ceil(Math.random() * 20);
       const secondRoll = Math.ceil(Math.random() * 20);
 
@@ -39,7 +40,7 @@ const PlayModal = () => {
             </div>
           ))}
       </div>
-      <button onClick={() => play(members)}>PLAY</button>
+      <button onClick={() => play()}>PLAY</button>
     </div>
   );
 };
