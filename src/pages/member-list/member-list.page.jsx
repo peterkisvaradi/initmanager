@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './member-list.module.css';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import { Context as MainContext } from '../../context/MainContext';
 
@@ -34,6 +34,7 @@ const MemberList = () => {
       {isPlaying && <PlayModal />}
       {!isPlaying && (
         <div className={styles.wrap}>
+          <Link to="/">HOME</Link>
           <h2>Party members of {partyName}</h2>
           <button onClick={() => mainContext.toggleIsPlaying()}>PLAY</button>
           <form onSubmit={handleSaveSubmit}>
