@@ -40,6 +40,7 @@ const CreateItem = ({ partyName }) => {
           advantage: false,
           disadvantage: false,
           created: Date.now(),
+          init: 0,
         });
       } else {
         mainContext.addParty(state.newPartyName);

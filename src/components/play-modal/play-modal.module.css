@@ -5,6 +5,13 @@
   bottom: 0;
   right: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: aquamarine;
+  z-index: 100;
+}
+
+.memberWrap {
+  margin: 1rem;
 }

@@ -30,22 +30,26 @@ const MemberList = () => {
   };
 
   return (
-    <div className={styles.wrap}>
+    <>
       {isPlaying && <PlayModal />}
-      <h2>Party members of {partyName}</h2>
-      <button onClick={() => mainContext.toggleIsPlaying()}>PLAY</button>
-      <form onSubmit={handleSaveSubmit}>
-        <div className={styles.itemlist}>
-          {currentMembers.map((item, index) => (
-            <MemberItem key={`mi${index}`} member={item} />
-          ))}
+      {!isPlaying && (
+        <div className={styles.wrap}>
+          <h2>Party members of {partyName}</h2>
+          <button onClick={() => mainContext.toggleIsPlaying()}>PLAY</button>
+          <form onSubmit={handleSaveSubmit}>
+            <div className={styles.itemlist}>
+              {currentMembers.map((item, index) => (
+                <MemberItem key={`mi${index}`} member={item} />
+              ))}
+            </div>
+          </form>
+          <div className={styles.footer}>
+            <h3>Create new member:</h3>
+            <CreateItem partyName={partyName} />
+          </div>
         </div>
-      </form>
-      <div className={styles.footer}>
-        <h3>Create new member:</h3>
-        <CreateItem partyName={partyName} />
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

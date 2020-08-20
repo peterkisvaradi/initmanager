@@ -12,6 +12,7 @@ const MemberItem = ({ member }) => {
     disadvantage,
     partyName,
     created,
+    init,
   } = member;
   const [state, setState] = React.useState({
     error: false,
@@ -22,6 +23,7 @@ const MemberItem = ({ member }) => {
       advantage,
       disadvantage,
       created,
+      init,
     },
   });
   const currentMembers = mainContext.state.members.filter(
@@ -45,7 +47,6 @@ const MemberItem = ({ member }) => {
 
   const handleNameChange = (event) => {
     const { value } = event.target;
-    console.log(value);
     setState((prevState) => {
       return {
         ...prevState,
@@ -61,7 +62,7 @@ const MemberItem = ({ member }) => {
         ...prevState,
         memberObject: {
           ...prevState.memberObject,
-          modifier: value,
+          modifier: parseInt(value),
         },
       };
     });
@@ -93,16 +94,17 @@ const MemberItem = ({ member }) => {
 
   return (
     <div>
-      Name:
-      <input
+      {`Name: ${state.memberObject.name} > `}
+      {/* <input
         type="text"
         value={state.memberObject.name}
         onChange={handleNameChange}
-      />
+      /> */}
       Modifier:
       <input
         value={state.memberObject.modifier}
         onChange={handleModifierChange}
+        type="number"
       />
       Advantage:
       <input
