@@ -26,10 +26,10 @@ const MemberItem = ({ member }) => {
       init,
     },
   });
-  const currentMembers = mainContext.state.members.filter(
+  /* const currentMembers = mainContext.state.members.filter(
     (item) => item.partyName === member.partyName
   );
-  const memberNames = currentMembers.map((item) => item.name);
+  const memberNames = currentMembers.map((item) => item.name); */
 
   const isInitialMount = React.useRef(true);
 
@@ -45,7 +45,7 @@ const MemberItem = ({ member }) => {
   }, [state.memberObject]);
   /* eslint-enable react-hooks/exhaustive-deps*/
 
-  const handleNameChange = (event) => {
+  /* const handleNameChange = (event) => {
     const { value } = event.target;
     setState((prevState) => {
       return {
@@ -54,7 +54,8 @@ const MemberItem = ({ member }) => {
         error: memberNames.includes(value) || value === '',
       };
     });
-  };
+  }; */
+
   const handleModifierChange = (event) => {
     const { value } = event.target;
     setState((prevState) => {
