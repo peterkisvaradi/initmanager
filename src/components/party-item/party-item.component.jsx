@@ -1,5 +1,5 @@
 import React from 'react';
-// import styles from './party-item.module.css';
+import styles from './party-item.module.css';
 
 import { Link } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ const PartyItem = ({ name }) => {
   const { lang } = mainContext.state;
 
   return (
-    <div>
+    <div className={styles.wrap}>
       <Link to={`/memberList/${name}`}>{name}</Link>
       <button onClick={() => mainContext.deleteParty(name)}>
         {lang.BTN_PARTY_ITEM_DELETE}

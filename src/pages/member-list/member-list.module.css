@@ -1,3 +1,17 @@
 .wrap {
   position: relative;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemList {
+  width: 100%;
+}
+
+.topButton {
+  margin: 1rem;
 }

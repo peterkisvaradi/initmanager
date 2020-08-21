@@ -1,0 +1,15 @@
+.wrap {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+  background-color: var(--butter);
+  border-top: 2px solid var(--dark);
+}
+
+.itemRow {
+  margin: 0.25rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

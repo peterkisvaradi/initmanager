@@ -13,7 +13,7 @@ const PartyList = () => {
   return (
     <div className={styles.wrap}>
       <h2 className={styles.title}>{lang.TITLE_PARTY_LIST_PAGE}</h2>
-      <div className={styles.contentwrap}>
+      <div className={styles.contentWrap}>
         {parties &&
           parties.map((item, index) => (
             <PartyItem name={item} key={`pi${index}`} />

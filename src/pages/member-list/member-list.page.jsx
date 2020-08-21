@@ -39,17 +39,16 @@ const MemberList = () => {
             {lang.TITLE_MEMBER_LIST_PAGE} {partyName}
           </h2>
           <button
+            className={styles.topButton}
             onClick={() => mainContext.toggleIsPlaying()}
             disabled={currentMembers.length === 0}
           >
             {lang.BTN_MEMBER_LIST_PLAY}
           </button>
-          <form onSubmit={handleSaveSubmit}>
-            <div className={styles.itemlist}>
-              {currentMembers.map((item, index) => (
-                <MemberItem key={`mi${index}`} member={item} />
-              ))}
-            </div>
+          <form onSubmit={handleSaveSubmit} className={styles.itemList}>
+            {currentMembers.map((item, index) => (
+              <MemberItem key={`mi${index}`} member={item} />
+            ))}
           </form>
           <div className={styles.footer}>
             <h3>{lang.TXT_MEMBER_LIST_CREATE}</h3>

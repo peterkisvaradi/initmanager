@@ -1,8 +1,8 @@
 :root {
-  --dark: #a35d6a;
-  --reddish: #c26565;
-  --butter: #c26565;
-  --light: #f7e7bd;
+  --dark: #810000;
+  --reddish: #e97171;
+  --butter: #ffcb8e;
+  --light: #f5efef;
 }
 
 body {
@@ -25,6 +25,13 @@ button {
   border: 1px solid var(--dark);
   font-weight: bold;
   color: var(--dark);
+}
+
+button:disabled {
+  background: gray;
+  border: 1px solid var(--dark);
+  font-weight: bold;
+  color: var(--butter);
 }
 
 a {

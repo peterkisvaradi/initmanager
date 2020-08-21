@@ -1,0 +1,14 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  padding: 1rem;
+  background-color: var(--butter);
+  margin: 1rem;
+}
+
+button {
+  margin: 1rem;
+}
