@@ -10,7 +10,7 @@ const CreateItem = ({ partyName }) => {
     error: false,
   });
   const mainContext = React.useContext(MainContext);
-  const { members, parties } = mainContext.state;
+  const { members, parties, lang } = mainContext.state;
   const currentMembers = members.filter((item) => item.partyName === partyName);
   const memberNames = currentMembers.map((item) => item.name);
 
@@ -51,16 +51,26 @@ const CreateItem = ({ partyName }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>{partyName ? 'Create new member:' : 'Create new party:'}</label>
+      <label>
+        {partyName
+          ? lang.TXT_CREATE_ITEM_MEMBER_TITLE
+          : lang.TXT_CREATE_ITEM_PARTY_TITLE}
+      </label>
       <input
         value={partyName ? state.newMemberName : state.newPartyName}
         onChange={handleChange}
         required
       />
       <button disabled={state.error} type="submit">
-        Create
+        {lang.BTN_CREATE_ITEM_BUTTON}
       </button>
-      {state.error && <div>ERROR</div>}
+      {state.error && (
+        <div>
+          {partyName
+            ? lang.TXT_CREATE_ITEM_MEMBER_NAME_ERROR
+            : lang.TXT_CREATE_PARTY_ERROR}
+        </div>
+      )}
     </form>
   );
 };

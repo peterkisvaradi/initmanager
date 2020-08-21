@@ -20,7 +20,7 @@ const PartyList = () => {
           ))}
       </div>
       <div className={styles.footer}>
-        <h3>Create new party:</h3>
+        <h3>{lang.TXT_PARTY_LIST_CREATE}</h3>
         <CreateItem />
       </div>
     </div>

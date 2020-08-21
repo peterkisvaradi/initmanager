@@ -3,6 +3,9 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin: auto;
+  max-width: 600px;
+  border: 1px solid var(--dark);
 }
 
 .title {

@@ -24,7 +24,7 @@ function App() {
         <Route path="/memberlist/:partyName" name="Member List" exact>
           <MemberList />
         </Route>
-        <Route path="/" name="Party List" exact>
+        <Route path={['/', '/home']} name="Party List" exact>
           <PartyList />
         </Route>
         <Router path="*" name="Not Found">

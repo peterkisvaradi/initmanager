@@ -1,3 +1,24 @@
 {
-  "TITLE_PARTY_LIST_PAGE": "Parties"
+  "TITLE_PARTY_LIST_PAGE": "Parties",
+  "BTN_CREATE_ITEM_BUTTON": "Create",
+  "TXT_CREATE_PARTY_ERROR": "You have another party with this name!",
+  "TXT_CREATE_ITEM_MEMBER_NAME_ERROR": "You have another party member with this name!",
+  "TXT_CREATE_ITEM_PARTY_TITLE": "Party name:",
+  "TXT_CREATE_ITEM_MEMBER_TITLE": "Member name:",
+  "TXT_MEMBER_ITEM_NAME": "Name:",
+  "TXT_MEMBER_ITEM_MODIFIER": "Modifier:",
+  "TXT_MEMBER_ITEM_ADVANTAGE": "Advantage:",
+  "TXT_MEMBER_ITEM_DISADVANTAGE": "Disadvantage:",
+  "BTN_MEMBER_ITEM_DELETE": "Delete",
+  "TXT_MEMBER_ITEM_NAME_ERROR": "You have another party member with this name, or missing name!",
+  "BTN_PARTY_ITEM_DELETE": "Delete",
+  "BTN_PLAY_MODAL_PLAY": "Play",
+  "BTN_PLAY_MODAL_CLOSE": "Close",
+  "BTN_MEMBER_LIST_HOME": "Home",
+  "TITLE_MEMBER_LIST_PAGE": "Party members of",
+  "TXT_PARTY_LIST_CREATE": "Create new party:",
+  "BTN_MEMBER_LIST_PLAY": "Play",
+  "TXT_MEMBER_LIST_CREATE": "Create new party member:",
+  "TXT_NOT_FOUND": "Page not found",
+  "BTN_NOT_FOUND_HOME": "Home"
 }

@@ -7,11 +7,14 @@ import { Context as MainContext } from '../../context/MainContext';
 
 const PartyItem = ({ name }) => {
   const mainContext = React.useContext(MainContext);
+  const { lang } = mainContext.state;
 
   return (
     <div>
       <Link to={`/memberList/${name}`}>{name}</Link>
-      <button onClick={() => mainContext.deleteParty(name)}>DEL</button>
+      <button onClick={() => mainContext.deleteParty(name)}>
+        {lang.BTN_PARTY_ITEM_DELETE}
+      </button>
     </div>
   );
 };

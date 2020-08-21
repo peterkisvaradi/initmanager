@@ -11,7 +11,7 @@ import PlayModal from '../../components/play-modal/play-modal.component.jsx';
 const MemberList = () => {
   const { partyName } = useParams();
   const mainContext = React.useContext(MainContext);
-  const { members, isPlaying } = mainContext.state;
+  const { members, isPlaying, lang } = mainContext.state;
   const currentMembers = members
     .filter((item) => item.partyName === partyName)
     .sort((a, b) => {
@@ -34,13 +34,15 @@ const MemberList = () => {
       {isPlaying && <PlayModal partyName={partyName} />}
       {!isPlaying && (
         <div className={styles.wrap}>
-          <Link to="/">HOME</Link>
-          <h2>Party members of {partyName}</h2>
+          <Link to="/">{lang.BTN_MEMBER_LIST_HOME}</Link>
+          <h2>
+            {lang.TITLE_MEMBER_LIST_PAGE} {partyName}
+          </h2>
           <button
             onClick={() => mainContext.toggleIsPlaying()}
             disabled={currentMembers.length === 0}
           >
-            PLAY
+            {lang.BTN_MEMBER_LIST_PLAY}
           </button>
           <form onSubmit={handleSaveSubmit}>
             <div className={styles.itemlist}>
@@ -50,7 +52,7 @@ const MemberList = () => {
             </div>
           </form>
           <div className={styles.footer}>
-            <h3>Create new member:</h3>
+            <h3>{lang.TXT_MEMBER_LIST_CREATE}</h3>
             <CreateItem partyName={partyName} />
           </div>
         </div>

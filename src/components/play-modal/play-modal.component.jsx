@@ -4,7 +4,7 @@ import { Context as MainContext } from '../../context/MainContext';
 
 const PlayModal = ({ partyName }) => {
   const mainContext = React.useContext(MainContext);
-  const { members } = mainContext.state;
+  const { members, lang } = mainContext.state;
   const currentMembers = members.filter((item) => item.partyName === partyName);
   const [order, setOrder] = React.useState([...currentMembers]);
 
@@ -30,7 +30,9 @@ const PlayModal = ({ partyName }) => {
 
   return (
     <div className={styles.wrap}>
-      <button onClick={() => mainContext.toggleIsPlaying()}>Close</button>
+      <button onClick={() => mainContext.toggleIsPlaying()}>
+        {lang.BTN_PLAY_MODAL_CLOSE}
+      </button>
       <div className={styles.memberWrap}>
         {order
           .sort((a, b) => (a.init > b.init ? -1 : a.init < b.init ? 1 : 0))
@@ -40,7 +42,7 @@ const PlayModal = ({ partyName }) => {
             </div>
           ))}
       </div>
-      <button onClick={() => play()}>PLAY</button>
+      <button onClick={() => play()}>{lang.BTN_PLAY_MODAL_PLAY}</button>
     </div>
   );
 };

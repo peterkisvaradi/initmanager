@@ -5,6 +5,7 @@ import { Context as MainContext } from '../../context/MainContext';
 
 const MemberItem = ({ member }) => {
   const mainContext = React.useContext(MainContext);
+  const { lang } = mainContext.state;
   const {
     name,
     modifier,
@@ -95,34 +96,36 @@ const MemberItem = ({ member }) => {
 
   return (
     <div>
-      {`Name: ${state.memberObject.name} > `}
+      {`${lang.TXT_MEMBER_ITEM_NAME} ${state.memberObject.name} > `}
       {/* <input
         type="text"
         value={state.memberObject.name}
         onChange={handleNameChange}
       /> */}
-      Modifier:
+      {lang.TXT_MEMBER_ITEM_MODIFIER}
       <input
         value={state.memberObject.modifier}
         onChange={handleModifierChange}
         type="number"
       />
-      Advantage:
+      {lang.TXT_MEMBER_ITEM_ADVANTAGE}
       <input
         type="checkbox"
         checked={state.memberObject.advantage}
         onChange={handleAdvantageChange}
         disabled={state.memberObject.disadvantage}
       />
-      Disadvantage:
+      {lang.TXT_MEMBER_ITEM_DISADVANTAGE}
       <input
         type="checkbox"
         checked={state.memberObject.disadvantage}
         onChange={handleDisadvantageChange}
         disabled={state.memberObject.advantage}
       />
-      <button onClick={() => mainContext.deleteMember(member)}>DEL</button>
-      {state.error && <div>ERROR egyező vagy üres név</div>}
+      <button onClick={() => mainContext.deleteMember(member)}>
+        {lang.BTN_MEMBER_ITEM_DELETE}
+      </button>
+      {state.error && <div>{lang.TXT_MEMBER_ITEM_MODIFIER}</div>}
     </div>
   );
 };
